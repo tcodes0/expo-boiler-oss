@@ -1,0 +1,6 @@
+"*.{ts,tsx,js,cjs,mjs,jsx}":
+  - yarn lint:staged
+  - yarn prettier --write
+package.json:
+  - yarn sort-package-json
+  - yarn prettier --write

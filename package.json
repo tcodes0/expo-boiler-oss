@@ -1,0 +1,61 @@
+{
+  "name": "expoBoiler",
+  "version": "0.0.1",
+  "private": true,
+  "description": "technical showcase/boilerplate",
+  "repository": "git@github.com:Thomazella/expo-boiler.git",
+  "license": "MIT",
+  "author": "Raphael Thomazella <thomazella9@gmail.com>",
+  "type": "module",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": []
+  },
+  "scripts": {
+    "app:android": "cd ./packages/app && expo start --android",
+    "app:eject": "expo eject",
+    "app:ios": "cd ./packages/app && expo start --ios",
+    "app:web": "expo start --web",
+    "build": "yarn workspace @expoBoiler/cli build",
+    "dev": "yarn workspace @expoBoiler/cli dev",
+    "postinstall": "yarn workspace @expoBoiler/scripts postinstall",
+    "lint": "eslint \"packages/**/*.ts*\"",
+    "lint:fix": "eslint \"packages/**/*.ts*\" --fix",
+    "lint:staged": "eslint --fix",
+    "prettier": "prettier --write",
+    "prettier:all": "prettier --write 'packages/**/*.[tj]s*'",
+    "start": "expo start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "typescript": "3.9.7"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.9",
+    "@types/node": "14.0.27",
+    "@types/react": "~16.9.44",
+    "@types/ws": "7.2.6",
+    "@typescript-eslint/eslint-plugin": "3.8.0",
+    "@typescript-eslint/parser": "3.8.0",
+    "babel-eslint": "10.1.0",
+    "babel-jest": "26.2.2",
+    "eslint": "7.6.0",
+    "eslint-import-resolver-typescript": "2.2.0",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jest": "23.20.0",
+    "eslint-plugin-react": "7.20.5",
+    "eslint-plugin-react-hooks": "4.0.8",
+    "eslint-plugin-react-native": "3.8.1",
+    "husky": "4.2.5",
+    "jest": "26.2.2",
+    "jest-fetch-mock": "3.0.3",
+    "json5": "2.1.3",
+    "lint-staged": "10.2.11",
+    "prettier": "2.0.5",
+    "rimraf": "3.0.2",
+    "sort-package-json": "1.44.0",
+    "ts-jest": "26.1.4"
+  }
+}

@@ -1,0 +1,200 @@
+root: true
+extends:
+  # Uses the recommended rules from @typescript-eslint/eslint-plugin
+  - plugin:@typescript-eslint/recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:import/typescript
+  - plugin:react/recommended
+  - plugin:react-hooks/recommended
+plugins:
+  - "@typescript-eslint"
+  - jest
+  - import
+  - react-hooks
+  - react
+  - react-native
+parser: "@typescript-eslint/parser"
+# see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/experimental-utils/src/ts-eslint/ParserOptions.ts
+parserOptions:
+  tsconfigRootDir: .
+  # Allows for the parsing of modern ECMAScript features
+  ecmaVersion: 2020
+  ecmaFeatures:
+    jsx: true
+  # Allows for the use of imports
+  sourceType: module
+  extraFileExtensions:
+    - .cjs
+globals:
+  __DEV__: true
+ignorePatterns:
+  - packages/**/build/**/*
+  - node_modules/**/*
+  - coverage/**/*
+settings:
+  react:
+    version: detect
+  import/parsers:
+    "@typescript-eslint/parser": [.ts, .tsx]
+    babel-eslint: [.js, .jsx]
+  import/resolver:
+    typescript:
+      directory:
+        - packages/*/tsconfig.json
+        - tsconfig.json
+rules:
+  ##########
+  # import #
+  ##########
+  import/no-duplicates: error
+  import/no-self-import: error
+  import/first: error
+  import/export: error
+  import/no-named-default: error
+  import/no-absolute-path: error
+  import/no-internal-modules:
+    - error
+    - allow:
+        - "@expoBoiler/**/*"
+        - "styled-components/*"
+        - "app/*"
+        - "react-native-gesture-handler/*"
+        - "react-native-reanimated/*"
+  # import/no-restricted-imports:
+  #   - error
+  #   - patterns:
+  #       - '../utils'
+  # seriously, no relative parent imports ../../../../bullshit.ts
+  import/no-relative-parent-imports: error
+  # using esmodules with typescript
+  import/no-commonjs: error
+  # bad for refactoring as things change name
+  import/no-default-export: error
+  import/order:
+    - error
+    - groups:
+        - - builtin
+          - external
+          - internal
+        - - parent
+          - sibling
+        - index
+      newlines-between: never
+      alphabetize:
+        order: asc
+  import/no-cycle:
+    - error
+    - maxDepth: 5
+      ignoreExternal: true
+  #
+  # warn
+  #
+  import/dynamic-import-chunkname: warn
+  import/no-dynamic-require: warn
+  import/no-useless-path-segments: warn
+  import/no-deprecated: warn
+  ##############
+  # typescript #
+  ##############
+  "@typescript-eslint/ban-ts-comment":
+    - error
+    - ts-expect-error: allow-with-description
+      ts-ignore: allow-with-description
+      ts-nocheck: allow-with-description
+      ts-check: false
+      minimumDescriptionLength: 3
+  #
+  # warn, code style
+  #
+  "@typescript-eslint/no-use-before-define": warn
+  "@typescript-eslint/no-empty-interface": warn
+  "@typescript-eslint/ban-types": warn
+  #
+  # off, code style
+  #
+  "@typescript-eslint/member-delimiter-style": off
+  "@typescript-eslint/indent": off
+  "@typescript-eslint/ban-ts-ignore": off
+  "@typescript-eslint/explicit-function-return-type": off
+  "@typescript-eslint/explicit-member-accessibility": off
+  "@typescript-eslint/no-empty-function": off
+  "@typescript-eslint/explicit-module-boundary-types": off
+  #
+  # off, conflicts with or replaced by prettier
+  #
+  "@typescript-eslint/no-extra-semi": off
+  ##########
+  # eslint #
+  ##########
+  no-shadow:
+    - error
+    - builtinGlobals: false
+      hoist: all
+      allow: []
+  #
+  # warn, code style
+  #
+  no-use-before-define: warn
+  no-confusing-arrow: warn
+  operator-linebreak: warn
+  object-curly-newline: warn
+  implicit-arrow-linebreak: warn
+  no-restricted-syntax: warn
+  new-cap: warn
+  camelcase: warn
+  no-else-return: warn
+  no-empty: warn
+  no-unused-expressions: warn
+  default-case: warn
+  no-console: warn
+  #
+  # off, conflicts with or replaced by prettier
+  #
+  no-extra-semi: off
+  max-len: off
+  indent: off
+  arrow-parens: off
+  no-underscore-dangle: off
+  arrow-body-style: off
+  padded-blocks: off
+  spaced-comment: off
+  #
+  # off, code style
+  #
+  # rule meant to help with types, we use ts for it
+  consistent-return: off
+  # we use some requires inline
+  global-require: off
+  # nothing wrong with var
+  no-var: off
+  # again, nothing wrong with var
+  prefer-const: off
+  # nothing wrong with continue
+  no-continue: off
+  ##########
+  # react #
+  #########
+  #
+  # off
+  #
+  # legacy
+  react/prop-types: off
+  #
+  # warn
+  #
+  react/display-name: warn
+  react/no-unescaped-entities: warn
+  ################
+  # react-native #
+  ################
+  #
+  # off
+  #
+  #
+  # warn
+  #
+  react-native/no-unused-styles: warn
+env:
+  jest/globals: true
+  react-native/react-native: true

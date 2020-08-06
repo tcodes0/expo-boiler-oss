@@ -1,0 +1,5 @@
+packages/app/src/__generated__/**/*.js
+packages/app/node_modules/**/*ts
+packages/app/node_modules/**/*js
+**/node_modules/**/*
+**/node_modules/@types/**/*
